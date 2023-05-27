@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <tr>
+                        <td scope="col">Name</td>
+                        <td scope="col">Mass</td>
+                        <td scope="col">Height</td>
+                        <td scope="col">Planet</td>
+                    </tr>
+                    <tr *ngFor="let c of characters">
+                        <td>
+                            {{c.name}}
+                        </td>
+                        <td>
+                            {{c.mass}}
+                        </td>
+                        <td>
+                            {{c.height}}
+                        </td>
+                        <td>
+                            <button type="button" (click)="viewPlanet(c.homeworld)" data-bs-toggle="modal" data-bs-target="#listPlanet">View Planet</button>
+                        </td>
+                    </tr>
+                </table>
+                <button type="button"  class="btn btn-danger" *ngIf="previousPage != null" (click)="getCharactersNewPage(previousPage)">Previous</button>
+                <button type="button"  class="btn btn-danger" *ngIf="nextPage != null" (click)="getCharactersNewPage(nextPage)">Next</button>
+            </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal" id="listPlanet">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4>Planet: <h4 class="modal-title">Title</h4></h4>                    
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <table class="table-light">
+                            <tr align="center">
+                                <td scope="col">name</td>
+                                <td scope="col">rotation_period</td>
+                                <td scope="col">orbital_period</td>
+                                <td scope="col">climate</td>
+                                <td scope="col">gravity</td>
+                                <td scope="col">surface_water</td>
+                                <td scope="col">terrain</td>
+                            </tr>
+                            <tr *ngFor="let p of getObjectProperties(planets)" align="center"  bgcolor="#9c9a98">
+                                <td>
+                                    {{p.name}}
+                                </td>
+                                <td>
+                                    {{p.rotation_period}}
+                                </td>
+                                <td>
+                                    {{p.orbital_period}}
+                                </td>
+                                <td>
+                                    {{p.climate}}
+                                </td>
+                                <td>
+                                    {{p.gravity}}
+                                </td>
+                                <td>
+                                    {{p.surface_water}}
+                                </td>
+                                <td>
+                                    {{p.terrain}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+            
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>            
+                </div>
+            </div>
+        </div>
+    </div>      
+</body>
+</html>
+
